@@ -74,6 +74,7 @@ enum PreferredBrowserSetting: String {
     case Firefox
     case Focus
     case Safari
+    case DuckDuckGo
 
     func getPreferredBrowserDeeplink(url: String) -> URL? {
         guard let encodedString = url.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return nil }
@@ -90,6 +91,8 @@ enum PreferredBrowserSetting: String {
             let urlWithoutScheme = split[1]
             let chromeScheme = split[0] == "http" ? "googlechrome:" : "googlechromes:"
             return URL(string: "\(chromeScheme)\(urlWithoutScheme)")
+        case .DuckDuckGo:
+            return URL(string: "ddgQuickLink://\(url)")
         }
     }
 
@@ -119,6 +122,8 @@ enum PreferredBrowserSetting: String {
             return Constant.string.settingsBrowserFirefox
         case .Focus:
             return Constant.string.settingsBrowserFocus
+        case .DuckDuckGo:
+            return Constant.string.settingsBrowserDuckDuckGo
         }
     }
 }

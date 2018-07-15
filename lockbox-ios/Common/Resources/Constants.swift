@@ -84,6 +84,7 @@ struct Constant {
         static let settingsBrowserFirefox = NSLocalizedString("settings.browser.firefox", value: "Firefox", comment: "Firefox Browser")
         static let settingsBrowserFocus = NSLocalizedString("settings.browser.focus", value: "Firefox Focus", comment: "Focus Browser")
         static let settingsBrowserSafari = NSLocalizedString("settings.browser.safari", value: "Safari", comment: "Safari Browser")
+        static let settingsBrowserDuckDuckGo = NSLocalizedString("settings.browser.duckduckgo", value: "Duck Duck Go", comment: "Duck Duck Go Browser")
         static let settingsUsageData = NSLocalizedString("settings.usageData", value: "Send Usage Data", comment: "Setting to send usage data")
         static let settingsUsageDataSubtitle = NSLocalizedString("settings.usageData.subtitle", value: "Mozilla strives to only collect what we need to provide and improve Firefox Lockbox for everyone. ", comment: "Setting for send usage data subtitle")
         static let learnMore = NSLocalizedString("settings.learnMore", value: "Learn More", comment: "Label for link to learn more")
