@@ -13,7 +13,7 @@ protocol CredentialProviderViewProtocol: class, AlertControllerView {
     var extensionContext: ASCredentialProviderExtensionContext { get }
 
     func displayWelcome()
-    func displayItemList()
+    func displayItemList(filter: String?)
 }
 
 @available(iOS 12, *)
@@ -130,7 +130,13 @@ class CredentialProviderPresenter {
                         self?.dispatcher.dispatch(action: CredentialProviderAction.authenticationRequested)
                         self?.view?.displayWelcome()
                     } else {
-                        self?.view?.displayItemList()
+                        var filterText: String?
+                        if let identifier = serviceIdentifiers.first {
+                            if identifier.type == .URL {
+                                filterText = identifier.identifier
+                            }
+                        }
+                        self?.view?.displayItemList(filter: filterText)
 //                        guard let dismissObserver = self?.dismissObserver else { return }
 //                        self?.view?.displayAlertController(buttons: [
 //                                AlertActionButtonConfiguration(title: "OK", tapObserver: dismissObserver, style: .default)

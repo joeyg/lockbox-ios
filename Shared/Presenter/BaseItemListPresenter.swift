@@ -13,6 +13,7 @@ protocol BaseItemListViewProtocol: class {
     func bind(items: Driver<[ItemSectionModel]>)
     var sortingButtonHidden: AnyObserver<Bool>? { get }
     func dismissKeyboard()
+    var filterText: String? { get }
 }
 
 struct LoginListTextSort {
@@ -54,7 +55,7 @@ class BaseItemListPresenter {
 
     lazy private(set) var filterTextObserver: AnyObserver<String> = {
         return Binder(self) { target, filterText in
-            target.dispatcher.dispatch(action: ItemListFilterAction(filteringText: filterText))
+     //       target.dispatcher.dispatch(action: ItemListFilterAction(filteringText: filterText))
             target.dispatcher.dispatch(action: ItemListFilterEditAction(editing: true))
             }.asObserver()
     }()
@@ -149,7 +150,9 @@ class BaseItemListPresenter {
 
         self.baseView?.bind(items: listDriver)
 
-        self.dispatcher.dispatch(action: ItemListFilterAction(filteringText: ""))
+        let filteringText = self.baseView?.filterText ?? ""
+
+        self.dispatcher.dispatch(action: ItemListFilterAction(filteringText: filteringText))
     }
 }
 

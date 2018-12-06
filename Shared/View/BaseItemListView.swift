@@ -58,6 +58,8 @@ class BaseItemListView: UIViewController {
     internal var disposeBag = DisposeBag()
     private var dataSource: RxTableViewSectionedAnimatedDataSource<ItemSectionModel>?
 
+    public var filterText: String?
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
@@ -141,11 +143,11 @@ extension BaseItemListView {
                                 .bind(to: cell.rx.isUserInteractionEnabled)
                                 .disposed(by: cell.disposeBag)
 
-                        cell.filterTextField.rx.text
-                                .orEmpty
-                                .asObservable()
-                                .bind(to: presenter.filterTextObserver)
-                                .disposed(by: cell.disposeBag)
+//                        cell.filterTextField.rx.text
+//                                .orEmpty
+//                                .asObservable()
+//                                .bind(to: presenter.filterTextObserver)
+//                                .disposed(by: cell.disposeBag)
 
                         self.configureFilterCell(
                                 cell,

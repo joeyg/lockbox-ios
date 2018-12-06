@@ -60,10 +60,12 @@ extension CredentialProviderView: CredentialProviderViewProtocol {
         self.currentViewController = welcomeView
     }
 
-    func displayItemList() {
-        let viewController = UIStoryboard(name: "ItemList", bundle: nil)
-            .instantiateViewController(withIdentifier: "itemlist")
+    func displayItemList(filter: String?) {
+        if let viewController = UIStoryboard(name: "ItemList", bundle: nil)
+            .instantiateViewController(withIdentifier: "itemlist") as? BaseItemListView {
 
-        self.currentViewController = UINavigationController(rootViewController: viewController)
+            viewController.filterText = filter
+            self.currentViewController = UINavigationController(rootViewController: viewController)
+        }
     }
 }
